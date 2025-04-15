@@ -90,12 +90,12 @@ function earnPoints(amount, element) {
   buttonStates[buttonId] = Date.now();
   localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
 
-  // ✅ লিংকে যাওয়ার অংশ
+  // ✅ লিংকে যাওয়ার অংশ (ঠিকভাবে নতুন ট্যাবে লিংক ওপেন)
   const link = buttonLinks[buttonId];
   if (link) {
     setTimeout(() => {
-      window.open(link, "_blank");
-    }, 300);
+      window.open(link, "_blank");  // '_blank' এর মানে নতুন ট্যাবে লিংক ওপেন হবে
+    }, 500); // 500ms (0.5 সেকেন্ড) ডিলে দিয়ে লিংক ওপেন হবে
   }
 }
 
