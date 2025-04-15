@@ -37,15 +37,13 @@ h1 {
 }
 
 .btn {
-  text-align: center;
   padding: 15px;
   font-size: 16px;
-  border: 3px solid transparent;
+  border: none;
   border-radius: 12px;
   background: #000;
   color: white;
   cursor: pointer;
-  text-decoration: none;
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -63,13 +61,7 @@ h1 {
   right: -3px;
   bottom: -3px;
   background: linear-gradient(45deg,
-    rgb(255, 0, 0),
-    rgb(255, 255, 0),
-    rgb(0, 255, 0),
-    rgb(0, 255, 255),
-    rgb(0, 0, 255),
-    rgb(255, 0, 255),
-    rgb(255, 0, 0));
+    red, yellow, lime, cyan, blue, magenta, red);
   background-size: 600% 600%;
   border-radius: 15px;
   z-index: -1;
@@ -86,4 +78,10 @@ h1 {
   background: #333;
   color: #aaa;
   pointer-events: none;
+}
+
+.timer {
+  margin-left: 10px;
+  font-size: 14px;
+  color: yellow;
 }
