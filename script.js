@@ -1,78 +1,68 @@
-const pointDisplay = document.getElementById("pointDisplay");
-const countdown = document.getElementById("countdown");
-const buttonGrid = document.getElementById("buttonGrid");
+let points = parseInt(localStorage.getItem("points")) || 0;
+const pointsDisplay = document.getElementById("points");
+pointsDisplay.textContent = points;
 
-let points = localStorage.getItem('points') ? parseInt(localStorage.getItem('points')) : 0;
-pointDisplay.innerText = points;
+const disableDuration = 30; // seconds
+const buttonStates = JSON.parse(localStorage.getItem("buttonStates")) || {};
 
-let isCooldown = false;
-let timeLeft = 0;
-let interval;
+function earnPoints(amount, btn) {
+  if (btn.disabled) return;
 
-// Define button links (you can change these links to any URL)
-const buttonLinks = [
-  "https://www.example1.com",
-  "https://www.example2.com",
-  "https://www.example3.com",
-  "https://www.example4.com",
-  "https://www.example5.com",
-  "https://www.example6.com",
-  "https://www.example7.com",
-  "https://www.example8.com",
-  "https://www.example9.com",
-  "https://www.example10.com"
-];
-
-// Generate 10 buttons dynamically
-for (let i = 1; i <= 10; i++) {
-  const btn = document.createElement("button");
-  btn.textContent = `Earn ${i}`;
-  btn.id = `btn-${i}`;
-  btn.addEventListener("click", () => handleClick(btn, i));
-  buttonGrid.appendChild(btn);
-}
-
-function handleClick(clickedBtn, index) {
-  if (isCooldown) return;
-
-  // Add points
   points += 33;
-  pointDisplay.innerText = points;
-  localStorage.setItem('points', points);
+  localStorage.setItem("points", points);
+  pointsDisplay.textContent = points;
 
-  // Open the associated link when clicked
-  window.open(buttonLinks[index - 1], "_blank");
+  btn.disabled = true;
+  const btnText = btn.textContent;
+  const timer = document.createElement("span");
+  timer.style.marginLeft = "10px";
+  btn.appendChild(timer);
 
-  // Disable all buttons
-  setCooldown(30);
-}
+  let countdown = disableDuration;
+  timer.textContent = `(${countdown}s)`;
 
-function setCooldown(seconds) {
-  isCooldown = true;
-  timeLeft = seconds;
-
-  updateCountdownText();
-  toggleButtons(true);
-
-  interval = setInterval(() => {
-    timeLeft--;
-    updateCountdownText();
-
-    if (timeLeft <= 0) {
+  const interval = setInterval(() => {
+    countdown--;
+    timer.textContent = `(${countdown}s)`;
+    if (countdown === 0) {
       clearInterval(interval);
-      toggleButtons(false);
-      isCooldown = false;
+      btn.disabled = false;
+      timer.remove();
+      delete buttonStates[btnText];
+      localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
     }
   }, 1000);
+
+  buttonStates[btnText] = Date.now();
+  localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
 }
 
-function updateCountdownText() {
-  countdown.innerText = timeLeft;
-}
+window.onload = () => {
+  document.querySelectorAll(".btn").forEach(btn => {
+    const btnText = btn.textContent;
+    if (buttonStates[btnText]) {
+      const timePassed = Math.floor((Date.now() - buttonStates[btnText]) / 1000);
+      if (timePassed < disableDuration) {
+        btn.disabled = true;
+        const remaining = disableDuration - timePassed;
+        const timer = document.createElement("span");
+        timer.style.marginLeft = "10px";
+        btn.appendChild(timer);
+        timer.textContent = `(${remaining}s)`;
 
-function toggleButtons(disable) {
-  const buttons = document.querySelectorAll("button");
-  buttons.forEach(btn => {
-    btn.disabled = disable;
+        let countdown = remaining;
+        const interval = setInterval(() => {
+          countdown--;
+          timer.textContent = `(${countdown}s)`;
+          if (countdown === 0) {
+            clearInterval(interval);
+            btn.disabled = false;
+            timer.remove();
+            delete buttonStates[btnText];
+            localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
+          }
+        }, 1000);
+      }
+    }
   });
-}
+};
