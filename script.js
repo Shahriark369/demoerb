@@ -8,7 +8,7 @@ const disableDuration = 30; // 30 seconds
 
 // 🔗 Button ID অনুযায়ী লিংক
 const buttonLinks = {
-  button_0: "https://example.com/1",
+  button_0: "https://www.youtube.com/",
   button_1: "https://example.com/2",
   button_2: "https://example.com/3",
   button_3: "https://example.com/4",
