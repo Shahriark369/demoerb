@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Earn Points</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Points</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Earn Points</h1>
-  <div class="points">Points: <span id="points">0</span></div>
-
-  <div class="grid">
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(1, this)">Earn 1</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(2, this)">Earn 2</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(3, this)">Earn 3</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(4, this)">Earn 4</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(5, this)">Earn 5</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(6, this)">Earn 6</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(7, this)">Earn 7</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(8, this)">Earn 8</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(9, this)">Earn 9</button></a>
-    <a href="https://www.youtube.com/"><button class="btn" onclick="earnPoints(10, this)">Earn 10</button></a>
-  </div>
-
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>Earn Points</h1>
+        <div id="points-container">
+            <p>Points: <span id="points">0</span></p>
+        </div>
+        <div class="buttons-container">
+            <!-- Buttons with Links -->
+            <a href="https://example.com/1" target="_blank" class="earn-button" id="button_0">Earn 1</a>
+            <a href="https://example.com/2" target="_blank" class="earn-button" id="button_1">Earn 2</a>
+            <a href="https://example.com/3" target="_blank" class="earn-button" id="button_2">Earn 3</a>
+            <a href="https://example.com/4" target="_blank" class="earn-button" id="button_3">Earn 4</a>
+            <a href="https://example.com/5" target="_blank" class="earn-button" id="button_4">Earn 5</a>
+            <a href="https://example.com/6" target="_blank" class="earn-button" id="button_5">Earn 6</a>
+            <a href="https://example.com/7" target="_blank" class="earn-button" id="button_6">Earn 7</a>
+            <a href="https://example.com/8" target="_blank" class="earn-button" id="button_7">Earn 8</a>
+            <a href="https://example.com/9" target="_blank" class="earn-button" id="button_8">Earn 9</a>
+            <a href="https://example.com/10" target="_blank" class="earn-button" id="button_9">Earn 10</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
