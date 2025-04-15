@@ -6,20 +6,6 @@ pointsDisplay.textContent = points;
 
 const disableDuration = 30; // 30 seconds
 
-// 🔗 Button ID অনুযায়ী লিংক
-const buttonLinks = {
-  button_0: "https://www.youtube.com/",
-  button_1: "https://example.com/2",
-  button_2: "https://example.com/3",
-  button_3: "https://example.com/4",
-  button_4: "https://example.com/5",
-  button_5: "https://example.com/6",
-  button_6: "https://example.com/7",
-  button_7: "https://example.com/8",
-  button_8: "https://example.com/9",
-  button_9: "https://example.com/10",
-};
-
 let buttonStates = JSON.parse(localStorage.getItem("buttonStates")) || {};
 
 function updateButtonStates() {
@@ -89,14 +75,6 @@ function earnPoints(amount, element) {
 
   buttonStates[buttonId] = Date.now();
   localStorage.setItem("buttonStates", JSON.stringify(buttonStates));
-
-  // ✅ লিংকে যাওয়ার অংশ (ঠিকভাবে নতুন ট্যাবে লিংক ওপেন)
-  const link = buttonLinks[buttonId];
-  if (link) {
-    setTimeout(() => {
-      window.open(link, "_blank");  // '_blank' এর মানে নতুন ট্যাবে লিংক ওপেন হবে
-    }, 500); // 500ms (0.5 সেকেন্ড) ডিলে দিয়ে লিংক ওপেন হবে
-  }
 }
 
 buttons.forEach((btn, index) => {
